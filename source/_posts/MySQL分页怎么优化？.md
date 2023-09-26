@@ -5,6 +5,7 @@ categories:
 - [数据库, MySQL]
 tags:
 - 数据库
+- MySQL
 - 查询优化
 ---
 
