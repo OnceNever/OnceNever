@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926152525247.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926153207589.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926153412078.png">
-<meta property="og:image" content="c:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20230926153917766.png">
+<meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926153917766.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926154213388.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/img_20230926155314.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926162829910.png">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926163515786.png">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20230926163809960.png">
 <meta property="article:published_time" content="2023-09-26T03:03:30.000Z">
-<meta property="article:modified_time" content="2023-09-26T08:52:56.651Z">
+<meta property="article:modified_time" content="2023-09-26T09:25:23.754Z">
 <meta property="article:author" content="Yang Lei">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="MySQL">
@@ -358,7 +358,7 @@
 <p>然后我们手动开启事务，插入一条(null,2,2)的数据，再回滚。</p>
 <p><img src="https://blog.seeyourface.cn/blog/image-20230926153412078.png" srcset="/img/loading.gif" lazyload alt="image-20230926153412078"></p>
 <p>显然，我们执行了插入语句，但是回滚了事务，所以数据库中并没有刚才的(null,2,2)数据。</p>
-<p><img src="C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20230926153917766.png" srcset="/img/loading.gif" lazyload alt="image-20230926153917766"></p>
+<p><img src="https://blog.seeyourface.cn/blog/image-20230926153917766.png" srcset="/img/loading.gif" lazyload alt="image-20230926153917766"></p>
 <p>但是我们可以发现自增值并没有同样发生回滚！如上图所示，自增值仍然固执地从 3 增加到了 4。</p>
 <p>如果这时候我们再去插入一条数据（null, 2, 2）的时候，主键 id 就会被自动赋为 4 了：</p>
 <p><img src="https://blog.seeyourface.cn/blog/image-20230926154213388.png" srcset="/img/loading.gif" lazyload alt="image-20230926154213388"></p>
