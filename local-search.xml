@@ -35,9 +35,9 @@
     
     <tags>
       
-      <tag>HashMap</tag>
-      
       <tag>哈希表</tag>
+      
+      <tag>HashMap</tag>
       
     </tags>
     
@@ -180,9 +180,9 @@
     
     <tags>
       
-      <tag>ConcurrentHashMap</tag>
-      
       <tag>HashMap</tag>
+      
+      <tag>ConcurrentHashMap</tag>
       
     </tags>
     
