@@ -19,7 +19,7 @@
     <meta name="description" content="ThreadLocal是什么在处理多线程并发安全的问题中，我们最常使用的方法就是通过锁来控制多个不同线程对临界区的访问。 但无论是什么样的锁，乐观锁或者悲观锁，尽管JDK 在升级过程中对它们都有不同程度的优化，但在并发冲突的时候总是会对性能产生一定的影响。 而我们今天的主角 ThreadLocal 解决的正是彻底避免多线程之间产生的竞争问题。 从字面意思上看，ThreadLocal 可以解释为线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ThreadLocal">
-<meta property="og:url" content="https://seeyourface.com/2023/10/09/ThreadLocal/index.html">
+<meta property="og:url" content="https://seeyourface.cn/2023/10/09/ThreadLocal/index.html">
 <meta property="og:site_name" content="Keinmal">
 <meta property="og:description" content="ThreadLocal是什么在处理多线程并发安全的问题中，我们最常使用的方法就是通过锁来控制多个不同线程对临界区的访问。 但无论是什么样的锁，乐观锁或者悲观锁，尽管JDK 在升级过程中对它们都有不同程度的优化，但在并发冲突的时候总是会对性能产生一定的影响。 而我们今天的主角 ThreadLocal 解决的正是彻底避免多线程之间产生的竞争问题。 从字面意思上看，ThreadLocal 可以解释为线程">
 <meta property="og:locale" content="zh_CN">
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"seeyourface.com","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"seeyourface.cn","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -401,7 +401,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>ThreadLocal</div>
-      <div>https://seeyourface.com/2023/10/09/ThreadLocal/</div>
+      <div>https://seeyourface.cn/2023/10/09/ThreadLocal/</div>
     </div>
     <div class="license-meta">
       
