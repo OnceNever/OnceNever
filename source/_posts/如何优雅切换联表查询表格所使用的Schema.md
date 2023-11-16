@@ -825,6 +825,32 @@ public class SchemaSwitchVisitorAdapter extends PGASTVisitorAdapter {
 
 通过这种操作，我们无需修改原先的任何 `SQL`。
 
+最后不要忘记在配置类中加入我们自定义的拦截器：
+
+```java
+@Configuration
+@EnableTransactionManagement(proxyTargetClass = true)
+public class MybatisPlusConfig {
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // schema选择组件
+        interceptor.addInnerInterceptor(schemaSelectInterceptor());
+        return interceptor;
+    }
+
+    /**
+     * schema选择组件
+     */
+    public SchemaSelectInterceptor schemaSelectInterceptor() {
+        return new SchemaSelectInterceptor();
+    }
+}
+```
+
+
+
 ### 最终效果
 
 ```tex
