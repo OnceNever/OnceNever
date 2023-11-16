@@ -224,6 +224,78 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/11/16/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%88%87%E6%8D%A2%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2%E8%A1%A8%E6%A0%BC%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84Schema/" target="_self">
+          如何优雅切换联表查询表格所使用的Schema
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/11/16/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%88%87%E6%8D%A2%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2%E8%A1%A8%E6%A0%BC%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84Schema/" target="_self">
+        <div>
+          序言前面提到过通过动态数据源实现多个数据源之间的连接，本以为能够实现我的多版本知识库切换需求。 但是！如果不出意外肯定就要出意外了！ 项目中存在大量联表查询语句，例如： 1234select *from t1         inner join t2 on t1.template_id = t2.id         inner join t3 on t3.template_id = t2.id
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-11-16 15:21" pubdate>
+              2023-11-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90/" class="category-chain-item">动态数据源</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90/">#动态数据源</a>
+            
+              <a href="/tags/Schema/">#Schema</a>
+            
+              <a href="/tags/%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2%E5%88%87%E6%8D%A2/">#联表查询切换</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/11/10/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%89%88%E6%9C%AC%E5%86%85%E5%AE%B9%E5%BA%93%E5%88%87%E6%8D%A2/" target="_self">
           动态数据源实现多版本内容库切换
         </a>
@@ -836,76 +908,6 @@
               <a href="/tags/HTTP/">#HTTP</a>
             
               <a href="/tags/%E7%BC%93%E5%AD%98/">#缓存</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/24/JDK%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97-LinkedList/" target="_self">
-          JDK源码系列-LinkedList
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/24/JDK%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97-LinkedList/" target="_self">
-        <div>
-          LinkedList简介本文内容均以JDK8为例。 LinkedList 是一个基于双向链表实现的集合类，经常被拿来和 ArrayList 做比较。  不过，我们在项目中一般是不会使用到 LinkedList 的，需要用到 LinkedList 的场景几乎都可以使用 ArrayList 来代替，并且，性能通常会更好！就连 LinkedList 的作者约书亚 · 布洛克（Josh Bloch）自己都
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-24 17:01" pubdate>
-              2023-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%BA%90%E7%A0%81/" class="category-chain-item">源码</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E6%BA%90%E7%A0%81/JDK/" class="category-chain-item">JDK</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E9%9B%86%E5%90%88/">#集合</a>
-            
-              <a href="/tags/LinkedList/">#LinkedList</a>
             
           </div>
         
