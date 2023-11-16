@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20231116175130355.png">
 <meta property="article:published_time" content="2023-11-16T07:21:30.000Z">
-<meta property="article:modified_time" content="2023-11-16T10:04:30.106Z">
+<meta property="article:modified_time" content="2023-11-16T10:17:55.691Z">
 <meta property="article:author" content="Yang Lei">
 <meta property="article:tag" content="动态数据源">
 <meta property="article:tag" content="Schema">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k 字
+          27k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          131 分钟
+          134 分钟
         
       </span>
     
@@ -355,6 +355,11 @@
 
 <p>通过构造函数传入待替换的 <code>Schema</code> 和知识库的表，判断当前访问的表是否存在于知识库表中，如果是的话就在前面加上要替换的 <code>Schema</code>。</p>
 <p>通过这种操作，我们无需修改原先的任何 <code>SQL</code>。</p>
+<p>最后不要忘记在配置类中加入我们自定义的拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableTransactionManagement(proxyTargetClass = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MybatisPlusConfig</span> &#123;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> MybatisPlusInterceptor <span class="hljs-title function_">mybatisPlusInterceptor</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">MybatisPlusInterceptor</span> <span class="hljs-variable">interceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MybatisPlusInterceptor</span>();<br>        <span class="hljs-comment">// schema选择组件</span><br>        interceptor.addInnerInterceptor(schemaSelectInterceptor());<br>        <span class="hljs-keyword">return</span> interceptor;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * schema选择组件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> SchemaSelectInterceptor <span class="hljs-title function_">schemaSelectInterceptor</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchemaSelectInterceptor</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">18:03:23.208 [http-nio-8080-exec-55] DEBUG c.d.s.m.DynamicSchemaManager - [getSchema,80] - dynamic-schema - switch to the schema named [20231115171241]<br>18:03:23.213 [http-nio-8080-exec-55] DEBUG c.d.s.m.A.qryByTemplateType - [debug,137] - ==&gt;  Preparing: SELECT t1.&quot;name&quot;, t4.bp<span class="hljs-built_in">_</span>code, t4.&quot;stage&quot;, t4.&quot;process&quot;, t4.dimension , t4.&quot;content&quot;, t4.&quot;level&quot;, t6.id AS itemId FROM &quot;20231115171241&quot;.analysis<span class="hljs-built_in">_</span>template t1 INNER JOIN &quot;20231115171241&quot;.standard<span class="hljs-built_in">_</span>template<span class="hljs-built_in">_</span>relevance t2 ON t1.&quot;id&quot; = t2.template<span class="hljs-built_in">_</span>id INNER JOIN &quot;20231115171241&quot;.standard t3 ON t2.standard<span class="hljs-built_in">_</span>id = t3.&quot;id&quot; AND t3.&quot;enable&quot; = true INNER JOIN &quot;20231115171241&quot;.standard<span class="hljs-built_in">_</span>item t4 ON t3.&quot;id&quot; = t4.standard<span class="hljs-built_in">_</span>id LEFT JOIN &quot;20231115171241&quot;.clause<span class="hljs-built_in">_</span>item<span class="hljs-built_in">_</span>relevance t5 ON t4.&quot;id&quot; = t5.clause<span class="hljs-built_in">_</span>id LEFT JOIN &quot;20231115171241&quot;.item t6 ON t5.item<span class="hljs-built_in">_</span>id = t6.id AND t6.status = 0 WHERE t1.&quot;type&quot; = ? AND t4.&quot;level&quot; = ?<br>18:03:23.213 [http-nio-8080-exec-55] DEBUG c.d.s.m.A.qryByTemplateType - [debug,137] - ==&gt; Parameters: 1(Integer), 3(Integer)<br>18:03:23.255 [http-nio-8080-exec-55] DEBUG c.d.s.m.A.qryByTemplateType - [debug,137] - &lt;==      Total: 385<br></code></pre></td></tr></table></figure>
 
 
