@@ -120,7 +120,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {}
 
 
 
-![image-20231013170446028](https://blog.seeyourface.cn/blog/image-20231013170446028.png)
+![image-20231013170446028](https://image.seeyourface.cn/migrate/image-20231013170446028.png)
 
 `CompletableFuture` 同时实现了 `Future` 和 `CompletionStage` 接口:
 
@@ -128,7 +128,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {}
 
 `CompletableFuture` 通过继承 `CompletionStage` 获取其提供的函数式能力。从这个接口的方法参数可以发现其大量使用了 `Java8` 引入的函数式编程。
 
-![image-20231013171231135](https://blog.seeyourface.cn/blog/image-20231013171231135.png)
+![image-20231013171231135](https://image.seeyourface.cn/migrate/image-20231013171231135.png)
 
 
 
@@ -481,7 +481,7 @@ executorService.shutdown();
 
 ##### 总览
 
-![Completable异步任务组合](https://blog.seeyourface.cn/blog/Completable%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E7%BB%84%E5%90%88.png)
+![Completable异步任务组合](https://image.seeyourface.cn/migrate/Completable%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E7%BB%84%E5%90%88.png)
 
 ##### AND组合关系
 

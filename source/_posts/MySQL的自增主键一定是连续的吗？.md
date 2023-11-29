@@ -24,7 +24,7 @@ MySQL自增主键的作用是在自增列上定义一个主键，让主键的值
 
 先创建一张表，其中id为主键且自增，字段a创建了一个唯一索引。
 
-![image-20230926112247507](https://blog.seeyourface.cn/blog/image-20230926112247507.png)
+![image-20230926112247507](https://image.seeyourface.cn/migrate/image-20230926112247507.png)
 
 
 
@@ -32,13 +32,13 @@ MySQL自增主键的作用是在自增列上定义一个主键，让主键的值
 
 执行`insert test_incr(a, b) values(1,1);`插入一条数据；再执行`show create table test_incr;`命令查看表的结构。
 
-![image-20230926113445991](https://blog.seeyourface.cn/blog/image-20230926113445991.png)
+![image-20230926113445991](https://image.seeyourface.cn/migrate/image-20230926113445991.png)
 
 
 
 上述表的结构定义存放在后缀名为 `.frm` 的本地文件中，在 MySQL 安装目录下的 data 文件夹下可以找到这个 `.frm` 文件：
 
-![img-20230926113940](https://blog.seeyourface.cn/blog/img-20230926113940.png)
+![img-20230926113940](https://image.seeyourface.cn/migrate/img-20230926113940.png)
 
 
 
@@ -55,7 +55,7 @@ MySQL自增主键的作用是在自增列上定义一个主键，让主键的值
 
 举个例子：现在表里当前数据行里最大的 id 是 1，AUTO_INCREMENT=2对吧。这时候，我们删除 id=1 的行，AUTO_INCREMENT 还是 2。
 
-![image-20230926114409154](https://blog.seeyourface.cn/blog/image-20230926114409154.png)
+![image-20230926114409154](https://image.seeyourface.cn/migrate/image-20230926114409154.png)
 
 
 
@@ -65,7 +65,7 @@ MySQL自增主键的作用是在自增列上定义一个主键，让主键的值
 
 我们趁MySQL不注意，使用`kill -9 pid`杀掉MySQL服务（主打的就是一个不讲武德），然后重启服务，再次执行`show create table test_incr;`
 
-![image-20230926140109271](https://blog.seeyourface.cn/blog/image-20230926140109271.png)
+![image-20230926140109271](https://image.seeyourface.cn/migrate/image-20230926140109271.png)
 
 
 
@@ -73,7 +73,7 @@ MySQL自增主键的作用是在自增列上定义一个主键，让主键的值
 
 以上测试基于MySQL数据库的**5.7.36**版本，存储引擎为**INNODB**。
 
-![image-20230926140417057](https://blog.seeyourface.cn/blog/image-20230926140417057.png)
+![image-20230926140417057](https://image.seeyourface.cn/migrate/image-20230926140417057.png)
 
 
 
@@ -139,7 +139,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926152320949](https://blog.seeyourface.cn/blog/image-20230926152320949.png)
+![image-20230926152320949](https://image.seeyourface.cn/migrate/image-20230926152320949.png)
 
 
 
@@ -147,7 +147,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926152525247](https://blog.seeyourface.cn/blog/image-20230926152525247.png)
+![image-20230926152525247](https://image.seeyourface.cn/migrate/image-20230926152525247.png)
 
 
 
@@ -177,7 +177,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926153207589](https://blog.seeyourface.cn/blog/image-20230926153207589.png)
+![image-20230926153207589](https://image.seeyourface.cn/migrate/image-20230926153207589.png)
 
 
 
@@ -185,7 +185,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926153412078](https://blog.seeyourface.cn/blog/image-20230926153412078.png)
+![image-20230926153412078](https://image.seeyourface.cn/migrate/image-20230926153412078.png)
 
 
 
@@ -193,7 +193,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926153917766](https://blog.seeyourface.cn/blog/image-20230926153917766.png)
+![image-20230926153917766](https://image.seeyourface.cn/migrate/image-20230926153917766.png)
 
 
 
@@ -203,7 +203,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926154213388](https://blog.seeyourface.cn/blog/image-20230926154213388.png)
+![image-20230926154213388](https://image.seeyourface.cn/migrate/image-20230926154213388.png)
 
 
 
@@ -227,7 +227,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![img_20230926155314](https://blog.seeyourface.cn/blog/img_20230926155314.png)
+![img_20230926155314](https://image.seeyourface.cn/migrate/img_20230926155314.png)
 
 有两种方法可以解决这个主键冲突：
 
@@ -265,7 +265,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926162829910](https://blog.seeyourface.cn/blog/image-20230926162829910.png)
+![image-20230926162829910](https://image.seeyourface.cn/migrate/image-20230926162829910.png)
 
 
 
@@ -273,7 +273,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926163210736](https://blog.seeyourface.cn/blog/image-20230926163210736.png)
+![image-20230926163210736](https://image.seeyourface.cn/migrate/image-20230926163210736.png)
 
 
 
@@ -281,7 +281,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926163423686](https://blog.seeyourface.cn/blog/image-20230926163423686.png)
+![image-20230926163423686](https://image.seeyourface.cn/migrate/image-20230926163423686.png)
 
 
 
@@ -291,7 +291,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926163515786](https://blog.seeyourface.cn/blog/image-20230926163515786.png)
+![image-20230926163515786](https://image.seeyourface.cn/migrate/image-20230926163515786.png)
 
 
 
@@ -307,7 +307,7 @@ MySQL中是通过`auto_increment_offset` 和 `auto_increment_increment` 这两�
 
 
 
-![image-20230926163809960](https://blog.seeyourface.cn/blog/image-20230926163809960.png)
+![image-20230926163809960](https://image.seeyourface.cn/migrate/image-20230926163809960.png)
 
 
 

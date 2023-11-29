@@ -38,7 +38,7 @@ JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当�
 - Cloneable：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
 - Serializable：表明它可以进行序列化和反序列化操作，也就是即可以将**对象序列化为字节流**进行持久化存储或网络传输，也可以从**字节流反序列化为对象**，非常方便。
 
-![image-20230927152729707](https://blog.seeyourface.cn/blog/image-20230927152729707.png)
+![image-20230927152729707](https://image.seeyourface.cn/migrate/image-20230927152729707.png)
 
 
 
@@ -48,7 +48,7 @@ JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当�
 
 
 
-![hashMap](https://blog.seeyourface.cn/blog/hashMap.png)
+![hashMap](https://image.seeyourface.cn/migrate/hashMap.png)
 
 
 
@@ -60,7 +60,7 @@ JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当�
 
 
 
-![image-20230927170909332](https://blog.seeyourface.cn/blog/image-20230927170909332.png)
+![image-20230927170909332](https://image.seeyourface.cn/migrate/image-20230927170909332.png)
 
 
 
@@ -97,7 +97,7 @@ JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当�
 
 
 
-![image-20230928134857618](https://blog.seeyourface.cn/blog/image-20230928134857618.png)
+![image-20230928134857618](https://image.seeyourface.cn/migrate/image-20230928134857618.png)
 
 
 
@@ -117,7 +117,7 @@ JDK1.8 以后的 `HashMap` 在解决哈希冲突时有了较大的变化，当�
 
 
 
-![image-20230928145903047](https://blog.seeyourface.cn/blog/image-20230928145903047.png)
+![image-20230928145903047](https://image.seeyourface.cn/migrate/image-20230928145903047.png)
 
 
 
@@ -145,7 +145,7 @@ K = 28 对 N 取模的运算 28 % N 可以转化为位运算的 `1 1100 & (N - 1
 
 
 
-![img-20230928153456](https://blog.seeyourface.cn/blog/img-20230928153456.png)
+![img-20230928153456](https://image.seeyourface.cn/migrate/img-20230928153456.png)
 
 
 
@@ -310,7 +310,7 @@ static int hash(int h) {
 
 
 
-![image-20230928175621083](https://blog.seeyourface.cn/blog/image-20230928175621083.png)
+![image-20230928175621083](https://image.seeyourface.cn/migrate/image-20230928175621083.png)
 
 
 

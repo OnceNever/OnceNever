@@ -12,7 +12,7 @@ tags:
 
 以JDK8为例，在ConcurrentHashMap源码的`putVal`方法中当传入的参数key或者value为null时，会抛出`NullPointerException`
 
-<img src="https://blog.seeyourface.cn/blog/image-20230923222339494.png" alt="image-20230923222339494" style="zoom: 67%;" />
+<img src="https://image.seeyourface.cn/migrate/image-20230923222339494.png" alt="image-20230923222339494" style="zoom: 67%;" />
 
 `ConcurrentHashMap` 的 key 和 value 不能为 null 主要是为了避免二义性。
 
@@ -61,7 +61,7 @@ ConcurrentMaps（ConcurrentHashMaps、ConcurrentSkipListMaps）中不允许使�
 
 例如，有两个线程 A 和 B 同时对 `ConcurrentHashMap` 进行复合操作，如下：
 
-<img src="https://blog.seeyourface.cn/blog/image-20230923224919178.png" alt="image-20230923224919178" style="zoom: 67%;" />
+<img src="https://image.seeyourface.cn/migrate/image-20230923224919178.png" alt="image-20230923224919178" style="zoom: 67%;" />
 
 如果线程 A 和 B 的执行顺序是这样：
 
@@ -78,4 +78,4 @@ ConcurrentMaps（ConcurrentHashMaps、ConcurrentSkipListMaps）中不允许使�
 
 这些方法都可以接受一个函数作为参数，根据给定的 key 和 value 来计算一个新的 value，并且将其更新到 map 中。
 
-<img src="https://blog.seeyourface.cn/blog/image-20230923225542922.png" alt="image-20230923225542922" style="zoom:80%;" />
+<img src="https://image.seeyourface.cn/migrate/image-20230923225542922.png" alt="image-20230923225542922" style="zoom:80%;" />

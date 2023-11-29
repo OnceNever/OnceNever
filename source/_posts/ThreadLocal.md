@@ -132,7 +132,7 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 `ThreadLocal` 结构图如下所示：
 
-![image-20231009141659619](https://blog.seeyourface.cn/blog/image-20231009141659619.png)
+![image-20231009141659619](https://image.seeyourface.cn/migrate/image-20231009141659619.png)
 
 
 
@@ -156,7 +156,7 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
 
 这个 `value` 的引用链条如下：
 
-![ThreadLocalMap中value引用链](https://blog.seeyourface.cn/blog/ThreadLocalMap%E4%B8%ADvalue%E5%BC%95%E7%94%A8%E9%93%BE.jpg)
+![ThreadLocalMap中value引用链](https://image.seeyourface.cn/migrate/ThreadLocalMap%E4%B8%ADvalue%E5%BC%95%E7%94%A8%E9%93%BE.jpg)
 
 可以看到，只有当 `Thread` 被回收时，这个 `value` 才有被回收的机会，否则，只要线程不退出，`value` 总是会存在一个强引用。但是，要求每个 `Thread` 都会退出，是一个极其苛刻的要求，对于线程池来说，大部分线程会一直存在在系统的整个生命周期内，那样的话，就会造成 `value` 对象出现泄漏的可能。
 
@@ -214,11 +214,11 @@ private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
 
 `ThreadLocalMap` 作为一个 `HashMap` 和 `java.util.HashMap` 的实现是不同的。对于`java.util.HashMap` 使用的是拉链法来处理冲突：
 
-![拉链法](https://blog.seeyourface.cn/blog/%E6%8B%89%E9%93%BE%E6%B3%95.jpg)
+![拉链法](https://image.seeyourface.cn/migrate/%E6%8B%89%E9%93%BE%E6%B3%95.jpg)
 
 但是，对于 `ThreadLocalMap`，它使用的是简单的线性探测法，如果发生了元素冲突，那么就使用下一个槽位存放：
 
-![线性探测法](https://blog.seeyourface.cn/blog/%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95.jpg)
+![线性探测法](https://image.seeyourface.cn/migrate/%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95.jpg)
 
 整个 `set()` 方法过程如下：
 

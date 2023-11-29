@@ -21,7 +21,7 @@ tags:
 - `Cloneable` ：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
 - `Serializable` : 表明它可以进行序列化和反序列化操作，也就是即可以将**对象序列化为字节流**进行持久化存储或网络传输，也可以从**字节流反序列化为对象**，非常方便。
 
-![image-20230924112821522](https://blog.seeyourface.cn/blog/image-20230924112821522.png)
+![image-20230924112821522](https://image.seeyourface.cn/migrate/image-20230924112821522.png)
 
 
 
@@ -40,7 +40,7 @@ tags:
 
 `ArrayList` 中可以存储任何类型的对象，包括 `null` 值。但是不建议向`ArrayList` 中添加 `null` 值， 因为`null` 值无意义，会让代码难以维护例如忘记做判空处理就会导致**空指针**异常。
 
-![image-20230924114702452](https://blog.seeyourface.cn/blog/image-20230924114702452.png)
+![image-20230924114702452](https://image.seeyourface.cn/migrate/image-20230924114702452.png)
 
 
 

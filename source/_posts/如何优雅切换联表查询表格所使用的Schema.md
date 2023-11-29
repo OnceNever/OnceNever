@@ -769,7 +769,7 @@ from t1
 
 由于我的项目中使用了 `MybatisPlus`, 已经实现了拦截器接口，另外做了一层封装，提供了`InnerInterceptor` 接口，只需要实现这个接口就可以对待执行的 `SQL` 进行一些修改逻辑。
 
-![image-20231116175130355](https://blog.seeyourface.cn/blog/image-20231116175130355.png)
+![image-20231116175130355](https://image.seeyourface.cn/migrate/image-20231116175130355.png)
 
 ```java
 public class SchemaSelectInterceptor implements InnerInterceptor {

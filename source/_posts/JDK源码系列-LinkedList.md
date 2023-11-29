@@ -16,11 +16,11 @@ tags:
 
 `LinkedList` 是一个基于双向链表实现的集合类，经常被拿来和 `ArrayList` 做比较。
 
-![linkedList数据结构](https://blog.seeyourface.cn/blog/linkedList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png)
+![linkedList数据结构](https://image.seeyourface.cn/migrate/linkedList%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png)
 
 不过，我们在项目中一般是不会使用到 `LinkedList` 的，需要用到 `LinkedList` 的场景几乎都可以使用 `ArrayList` 来代替，并且，性能通常会更好！就连 `LinkedList` 的作者约书亚 · 布洛克（Josh Bloch）自己都说从来不会使用 `LinkedList` 。
 
-![336a2145-32ef-497e](https://blog.seeyourface.cn/blog/336a2145-32ef-497e.png)
+![336a2145-32ef-497e](https://image.seeyourface.cn/migrate/336a2145-32ef-497e.png)
 
 另外，**不要**下意识地认为 `LinkedList` 作为链表就最适合元素增删的场景。`LinkedList` 仅仅在头尾插入或者删除元素的时候时间复杂度近似 O(1)，其他情况增删元素的平均时间复杂度都是 O(n) ，因为都需要先遍历到对应节点再进行增删操作。
 
@@ -53,7 +53,7 @@ tags:
 - `Cloneable` ：表明它具有拷贝能力，可以进行深拷贝或浅拷贝操作。
 - `Serializable` : 表明它可以进行序列化和反序列化操作，也就是即可以将**对象序列化为字节流**进行持久化存储或网络传输，也可以从**字节流反序列化为对象**，非常方便。
 
-![image-20230924171241953](https://blog.seeyourface.cn/blog/image-20230924171241953.png)
+![image-20230924171241953](https://image.seeyourface.cn/migrate/image-20230924171241953.png)
 
 与ArrayList不同的是，`LinkedList` 中的元素是通过 `Node` 定义的：
 
@@ -363,7 +363,7 @@ E unlink(Node<E> x) {
 
 参考下图理解：
 
-![LinkedList删除节点逻辑](https://blog.seeyourface.cn/blog/LinkedList%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9%E9%80%BB%E8%BE%91.jpg)
+![LinkedList删除节点逻辑](https://image.seeyourface.cn/migrate/LinkedList%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9%E9%80%BB%E8%BE%91.jpg)
 
 
 
