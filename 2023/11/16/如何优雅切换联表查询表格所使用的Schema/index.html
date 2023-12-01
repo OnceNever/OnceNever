@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://blog.seeyourface.cn/blog/pixel.png">
-  <link rel="icon" href="https://blog.seeyourface.cn/blog/pixel.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://image.seeyourface.cn/migrate/pixel.png">
+  <link rel="icon" href="https://image.seeyourface.cn/migrate/pixel.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Keinmal">
 <meta property="og:description" content="序言前面提到过通过动态数据源实现多个数据源之间的连接，本以为能够实现我的多版本知识库切换需求。 但是！如果不出意外肯定就要出意外了！ 项目中存在大量联表查询语句，例如： 1234select *from t1         inner join t2 on t1.template_id &#x3D; t2.id         inner join t3 on t3.template_id &#x3D; t2.id">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.seeyourface.cn/blog/image-20231116175130355.png">
+<meta property="og:image" content="https://image.seeyourface.cn/migrate/image-20231116175130355.png">
 <meta property="article:published_time" content="2023-11-16T07:21:30.000Z">
-<meta property="article:modified_time" content="2023-11-16T10:17:55.691Z">
+<meta property="article:modified_time" content="2023-11-30T02:51:31.062Z">
 <meta property="article:author" content="Yang Lei">
 <meta property="article:tag" content="动态数据源">
 <meta property="article:tag" content="Schema">
 <meta property="article:tag" content="联表查询切换">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.seeyourface.cn/blog/image-20231116175130355.png">
+<meta name="twitter:image" content="https://image.seeyourface.cn/migrate/image-20231116175130355.png">
   
   
   
@@ -195,7 +195,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://blog.seeyourface.cn/blog/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://image.seeyourface.cn/migrate/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -345,7 +345,7 @@
 <h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p><code>org.apache.ibatis.plugin.Interceptor</code> 是 <code>MyBatis</code> 提供的拦截器接口，可以用于在 <code>MyBatis</code> 执行 <code>SQL</code> 语句的各个阶段进行拦截和干预。</p>
 <p>通过实现这个接口，我们可以在 <code>SQL</code> 语句执行前后，以及执行期间做一些额外的处理。</p>
 <p>由于我的项目中使用了 <code>MybatisPlus</code>, 已经实现了拦截器接口，另外做了一层封装，提供了<code>InnerInterceptor</code> 接口，只需要实现这个接口就可以对待执行的 <code>SQL</code> 进行一些修改逻辑。</p>
-<p><img src="https://blog.seeyourface.cn/blog/image-20231116175130355.png" srcset="/img/loading.gif" lazyload alt="image-20231116175130355"></p>
+<p><img src="https://image.seeyourface.cn/migrate/image-20231116175130355.png" srcset="/img/loading.gif" lazyload alt="image-20231116175130355"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SchemaSelectInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">InnerInterceptor</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">beforeQuery</span><span class="hljs-params">(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> boundSql.getSql();<br>        <span class="hljs-comment">// 简单判断sql中是否包含涉及的知识库表，不包含的话就不用解析了</span><br>        <span class="hljs-keyword">if</span> (!isContainsSyncTable(sql)) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">version</span> <span class="hljs-operator">=</span> DynamicSchemaContextHolder.peek();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">schema</span> <span class="hljs-operator">=</span> DynamicSchemaManager.getSchema(version);<br>        <span class="hljs-type">PGSQLStatementParser</span> <span class="hljs-variable">parser</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PGSQLStatementParser</span>(sql);<br>        <span class="hljs-type">SQLStatement</span> <span class="hljs-variable">sqlStatement</span> <span class="hljs-operator">=</span> parser.parseStatement();<br>        <span class="hljs-comment">// 访问器</span><br>        <span class="hljs-type">SchemaSwitchVisitorAdapter</span> <span class="hljs-variable">visitor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchemaSwitchVisitorAdapter</span>(schema, DynamicSchemaManager.getSyncTableNames());<br>        sqlStatement.accept(visitor);<br>        PluginUtils.mpBoundSql(boundSql).sql(SQLUtils.toSQLString(sqlStatement, DbType.postgresql));<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isContainsSyncTable</span><span class="hljs-params">(String sql)</span> &#123;<br>        <span class="hljs-keyword">return</span> DynamicSchemaManager.isContainsSyncTable(sql.toLowerCase());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我们现在能拦截执行前的 <code>SQL</code>，现在剩下的首要任务就是将需要替换<code>schema</code>的表正确替换，考虑到有一些表有很相似的名称，不能简单进行 <code>replace</code>。</p>
@@ -466,6 +466,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/30/%E5%B0%86%E7%99%BD%E5%AB%96%E8%BF%9B%E8%A1%8C%E5%88%B0%E5%BA%95%E2%80%94%E2%80%94%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E8%BF%81%E7%A7%BB%E5%9B%BD%E5%A4%96%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B5%81%E7%A8%8B/" title="将白嫖进行到底——记一次网站服务迁移国外服务器流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">将白嫖进行到底——记一次网站服务迁移国外服务器流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
