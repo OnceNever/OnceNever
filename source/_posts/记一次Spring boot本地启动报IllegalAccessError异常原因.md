@@ -60,12 +60,6 @@ class xxx.sso.support.$Proxy130 cannot access its superinterface xxx.sso.support
 
 
 
-### 双亲委派
-
-
-
-
-
 ### 参考
 
 [^1]: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.devtools.diagnosing-classloading-issues
