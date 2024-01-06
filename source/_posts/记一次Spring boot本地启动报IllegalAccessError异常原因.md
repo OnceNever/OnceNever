@@ -1,6 +1,6 @@
 ---
 title: 记一次Spring boot本地启动报IllegalAccessError异常原因
-date: 2023/01/05 16:05:22
+date: 2024/01/05 16:05:22
 categories:
 - [问题记录]
 tags:
