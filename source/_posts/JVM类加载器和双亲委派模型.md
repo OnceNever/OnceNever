@@ -6,7 +6,7 @@ categories:
 tags:
 - JVM
 - 类加载器
-- 双亲wei'pai
+- 双亲委派
 ---
 
 ### 序言
