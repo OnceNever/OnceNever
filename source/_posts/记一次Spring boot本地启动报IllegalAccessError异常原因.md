@@ -1,6 +1,6 @@
 ---
 title: 记一次Spring boot本地启动报IllegalAccessError异常原因
-date: 2023/01/05 16:05:22
+date: 2024/01/05 16:05:22
 categories:
 - [问题记录]
 tags:
@@ -57,12 +57,6 @@ class xxx.sso.support.$Proxy130 cannot access its superinterface xxx.sso.support
 
 - 大力出奇迹，删掉或者注释掉`spring-boot-devtools`插件。
 - 在`META-INF/spring-devtools.properties`中设置`restart.include.projectcommon=被代理对象所在的jar`，保证代理对象和被代理对象使用同一个类加载器。
-
-
-
-### 双亲委派
-
-
 
 
 
