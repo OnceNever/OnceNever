@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>记一次Error parsing HTTP request header问题解决</title>
+    <link href="/2024/08/08/%E8%AE%B0%E4%B8%80%E6%AC%A1Error%20parsing%20HTTP%20request%20header%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    <url>/2024/08/08/%E8%AE%B0%E4%B8%80%E6%AC%A1Error%20parsing%20HTTP%20request%20header%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
+    
+    <content type="html"><![CDATA[<h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>近期在做一个抓取网络数据包进行分析的项目，使用<code>springboot</code>框架，基于<code>pcap4j</code>实现，大致的逻辑就是抓取数据包，解析一些常用信息，然后收集所有<code>IP</code>，最后通过<code>nmap</code>主动嗅探给定范围主机的信息，包括操作系统以及端口开放情况，运行的服务等等。</p><p>前半段一切顺利，在对抓取到的<code>IP</code>使用<code>nmap</code>主动探测时，总是会在控制台打印一段错误日志：</p><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs tex">2024-08-08 18:14:17.078  INFO 5460 --- [nio-8080-exec-5] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header<br> Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.<br><br>java.lang.IllegalArgumentException: Invalid character found in the HTTP protocol [RTSP/1.00x0d0x0a0x0d0x0a...]<br>at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:570) ~[tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271) ~[tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.coyote.AbstractProtocol<span class="hljs-built_in">$</span>ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.tomcat.util.net.NioEndpoint<span class="hljs-built_in">$</span>SocketProcessor.doRun(NioEndpoint.java:1789) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.tomcat.util.threads.ThreadPoolExecutor<span class="hljs-built_in">$</span>Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at org.apache.tomcat.util.threads.TaskThread<span class="hljs-built_in">$</span>WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.68.jar:9.0.68]<br>at java.lang.Thread.run(Thread.java:748) [na:1.8.0<span class="hljs-built_in">_</span>301]<br></code></pre></td></tr></table></figure><h3 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h3><p>由于此前从未遇到这个问题，所以首要目的是搞清楚这个问题意味着什么，对症下药才能彻底解决。</p><p>经过查询资料找到三个主要产生问题的原因。</p><h4 id="传入的HTTP标头比预期要大"><a href="#传入的HTTP标头比预期要大" class="headerlink" title="传入的HTTP标头比预期要大"></a>传入的HTTP标头比预期要大</h4><p>内置的<code>tomcat</code>服务器默认接受的<code>HTTP</code>最大标头为<strong>8k</strong>。</p><p>因为过大的标头会消耗更多的内存，可能会降低请求速度，甚至导致服务器崩溃。</p><p>所以限制标头的大小是一种安全的做法。</p><p>我们可以通过一行配置修改默认接受的最大标头大小：</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">server.max-http-header-size</span>=<span class="hljs-string">64000</span><br></code></pre></td></tr></table></figure><p>我试着修改配置文件，但最终还是无法解决问题。</p><h4 id="服务器接收HTTP而客户端使用HTTPS"><a href="#服务器接收HTTP而客户端使用HTTPS" class="headerlink" title="服务器接收HTTP而客户端使用HTTPS"></a>服务器接收HTTP而客户端使用HTTPS</h4><p>服务的希望接收一个未加密的标头，如果客户端使用<code>HTTPS</code>请求服务器，服务器也会因为无法解析客户端加密的标头而提示错误。</p><p>但是在抓包的整个过程我没有主动使用<code>HTTPS</code>请求服务器。</p><h4 id="服务器接收到一个不符合HTTP标头规范的请求"><a href="#服务器接收到一个不符合HTTP标头规范的请求" class="headerlink" title="服务器接收到一个不符合HTTP标头规范的请求"></a>服务器接收到一个不符合HTTP标头规范的请求</h4><p>由于抓包中存在我本机<code>IP</code>，同时使用<code>nmap</code>对主机上所有常见端口进行扫描，这就包括了我的服务监听的<code>8080</code>端口，<code>nmap</code>通过发送<code>TCP SYN</code>包来监测端口是否开放，此时这个包并不符合<code>HTTP</code>标头规范，所以<code>tomcat</code>服务器尝试解析标头时出现错误。</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>最终修改<code>nmap</code>的扫描命令，排除本地<code>8080</code>端口后报错消失。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+      <category>HTTP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>HTTP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Ollama安装配置与使用</title>
     <link href="/2024/05/30/Ollama%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
     <url>/2024/05/30/Ollama%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
